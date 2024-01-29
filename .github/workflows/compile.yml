@@ -1,0 +1,20 @@
+name: Compile
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Build with cargo
+        run: cargo build --verbose
+      - name: Run with cargo
+        run: cargo run --verbose
