@@ -1,5 +1,5 @@
 name: Compile
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+run-name: ${{ github.actor }} is compiling and testing.
 on:
   push:
     branches:
@@ -25,5 +25,3 @@ jobs:
             ${{ runner.os }}-rust-
       - name: Build with cargo
         run: cargo build --verbose
-      - name: Run with cargo
-        run: cargo run --verbose
