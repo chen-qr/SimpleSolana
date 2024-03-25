@@ -1,24 +1,21 @@
-// 导入Solana的模块和类型
-use solana_program::{
-    account_info::AccountInfo, 
-    entrypoint, // 宏定义，用来指定智能合约的执行入口
-    entrypoint::ProgramResult, 
-    msg, 
-    pubkey::Pubkey,
-};
+#![allow(clippy::result_large_err)]
 
-// 指定智能合约的执行函数是 process_instruction
-entrypoint!(process_instruction);
+use anchor_lang::prelude::*;
 
-// 智能合约逻辑
-fn process_instruction(
-    program_id: &Pubkey,
-    _accounts: &[AccountInfo],
-    _instruction_data: &[u8],
-) -> ProgramResult {
-    msg!("Hello, Solana!");
+declare_id!("2phbC62wekpw95XuBk4i1KX4uA8zBUWmYbiTMhicSuBV");
 
-    msg!("Our program's Program ID: {}", &program_id);
+#[program]
+pub mod hello_solana {
+    use super::*;
 
-    Ok(())
+    pub fn hello(_ctx: Context<Hello>) -> Result<()> {
+        msg!("Hello, Solana!");
+
+        msg!("Our program's Program ID: {}", &id());
+
+        Ok(())
+    }
 }
+
+#[derive(Accounts)]
+pub struct Hello {}
