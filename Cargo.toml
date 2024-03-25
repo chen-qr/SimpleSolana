@@ -1,13 +1,14 @@
-[package]
-name = "simple_solana"
-version = "0.1.0"
-edition = "2021"
+[workspace]
+resolver = "2"
+members = [
+    "programs/*"
+]
 
-[dependencies]
-solana-program = "1.16.10"
-
-[lib]
-# crate-type 指定编译的目标类型
-# cdylib 表示编译为C动态库，使得编译后的智能合约可以在Solana虚拟机上运行
-# lib 表示编译为Rust库，可以被其他Rust程序作为依赖导入
-crate-type = ["cdylib", "lib"]
+[profile.release]
+overflow-checks = true
+lto = "fat"
+codegen-units = 1
+[profile.release.build-override]
+opt-level = 3
+incremental = false
+codegen-units = 1

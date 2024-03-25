@@ -1,0 +1,16 @@
+[features]
+seeds = false # 不使用Anchor自带的种子功能，种子用于生成公钥
+skip-lint = false # 不跳过lint检查，这样代码更加安全
+
+[programs.localnet]
+hello_solana = "2phbC62wekpw95XuBk4i1KX4uA8zBUWmYbiTMhicSuBV"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
